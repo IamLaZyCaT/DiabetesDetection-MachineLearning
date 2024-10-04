@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/predict.css' %}">
+</head>
+<body>
+    <nav>
+        <a class="logo" href="../../detail">
+            Diabetes Detection
+        </a>
+    </nav>
+
+    <div class="container">
+        <h1>Please enter your information:</h1>
+        {% load static %}
+        <form id="diabetesForm" action="predict" method="POST">
+            {% csrf_token %}
+            <div class="one">
+                <div class="col">
+                    <div class="pregnancies">
+                        <label for="pregnancies">Pregnancies</label>
+                        <input type="text" name="pregnancies" id="pregnancies" placeholder="Enter pregnancies level">
+                        <div class="error" id="errPregnancies"></div>
+                    </div>
+                    
+                    <div class="glucose">
+                        <label for="glucose">Glucose</label>
+                        <input type="text" name="glucose" id="glucose" placeholder="Enter glucose level">
+                        <div class="error" id="errGlucose"></div>
+                    </div>
+                    
+                    <div class="bloodPressure">
+                        <label for="bloodPressure">Blood Pressure</label>
+                        <input type="text" name="bloodPressure" id="bloodPressure" placeholder="Enter blood pressure level">
+                        <div class="error" id="errBloodPressure"></div>
+                    </div>
+                   
+                    <div class="skinThickness">
+                        <label for="skinThickness">Skin Thickness</label>
+                        <input type="text" name="skinThickness" id="skinThickness" placeholder="Enter skin thickness level">
+                        <div class="error" id="errSkinThickness"></div>
+                    </div>
+                </div>
+                
+                <div class="col">
+                    <div class="insulin">
+                        <label for="insulin">Insulin</label>
+                        <input type="text" name="insulin" id="insulin" placeholder="Enter insulin level">
+                        <div class="error" id="errInsulin"></div>
+                    </div>
+        
+                    <div class="BMI">
+                        <label for="BMI">BMI</label>
+                        <input type="text" name="BMI" id="BMI" placeholder="Enter BMI level">
+                        <div class="error" id="errBMI"></div>
+                    </div>
+        
+                    <div class="DPF">
+                        <label for="DPF">Diabetes Predigree Function</label>
+                        <input type="text" name="DPF" id="DPF" placeholder="Enter DPF level">
+                        <div class="error" id="errDPF"></div>
+                    </div>
+        
+                    <div class="age">
+                        <label for="age">Age</label>
+                        <input type="text" name="age" id="age" placeholder="Enter age">
+                        <div class="error" id="errAge"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn">
+                <input type="submit" name="submit" id="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("diabetesForm").onsubmit = function(event) {
+            var isValid = true;
+
+            // Clear previous error messages
+            document.querySelectorAll('.error').forEach(e => e.innerText = "");
+
+            // Fetch form values
+            var pregnancies = document.getElementById("pregnancies").value;
+            var glucose = document.getElementById("glucose").value;
+            var bloodPressure = document.getElementById("bloodPressure").value;
+            var skinThickness = document.getElementById("skinThickness").value;
+            var insulin = document.getElementById("insulin").value;
+            var bmi = document.getElementById("BMI").value;
+            var dpf = document.getElementById("DPF").value;
+            var age = document.getElementById("age").value;
+
+            // Clear error messages after 5 seconds
+            function clearErrors() {
+                setTimeout(function() {
+                    document.querySelectorAll('.error').forEach(e => e.innerText = "");
+                }, 5000); // 5 seconds
+            }
+
+            // Validate each field
+            if (!pregnancies || isNaN(pregnancies) || pregnancies < 0) {
+                document.getElementById("errPregnancies").innerText = "Please enter a valid number for pregnancies.";
+                isValid = false;
+            } 
+
+            if (!glucose || isNaN(glucose) || glucose < 0) {
+                document.getElementById("errGlucose").innerText = "Please enter a valid number for glucose.";
+                isValid = false;
+            }
+
+            if (!bloodPressure || isNaN(bloodPressure) || bloodPressure < 0) {
+                document.getElementById("errBloodPressure").innerText = "Please enter a valid number for blood pressure.";
+                isValid = false;
+            }
+
+            if (!skinThickness || isNaN(skinThickness) || skinThickness < 0) {
+                document.getElementById("errSkinThickness").innerText = "Please enter a valid number for skin thickness.";
+                isValid = false;
+            }
+
+            if (!insulin || isNaN(insulin) || insulin < 0) {
+                document.getElementById("errInsulin").innerText = "Please enter a valid number for insulin.";
+                isValid = false;
+            }
+
+            if (!bmi || isNaN(bmi) || bmi < 0) {
+                document.getElementById("errBMI").innerText = "Please enter a valid number for BMI.";
+                isValid = false;
+            }
+
+            if (!dpf || isNaN(dpf)) {
+                document.getElementById("errDPF").innerText = "Please enter a valid number for DPF.";
+                isValid = false;
+            }
+
+            if (!age || isNaN(age) || age < 0) {
+                document.getElementById("errAge").innerText = "Please enter a valid number for age.";
+                isValid = false;
+            }
+
+            // Prevent form submission if invalid
+            if (!isValid) {
+                event.preventDefault();
+                clearErrors(); // Clear the errors after 5 seconds
+            }
+        };
+    </script>
+</body>
+</html>

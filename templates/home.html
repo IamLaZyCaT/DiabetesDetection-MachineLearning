@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomePage</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %} ">
+    <style>
+        .contain{
+            gap:20px;
+        }
+        .box{
+            box-shadow:  2px 2px 5px #8c8c8c,
+            -0px -0px 10px #ffffff;
+            padding:50px;
+            border-radius:50px;
+            
+        }
+        .box1{
+            margin-top:20px;
+        }
+        .head{
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #958B8B;
+        }
+        .body{
+            font-size: 13px; 
+            color: #737070;
+        }
+        .btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 30px;
+            margin-left: 8px; 
+            font-weight:bold;
+        }
+        .btn:hover{
+            text-decoration:none !important;
+            background:black;
+            color: white;
+        }
+    </style>    
+</head>
+<body>
+    <nav>
+        <a href="/" class="logo" >
+            Diabetes Detection
+        </a>
+        <div class="nav-links">
+            <a href="register">Register</a>
+            <a href="login">Log In</a>
+        </div>
+    </nav>
+    <div class="img">
+        <div class="sub">
+            <h4 class="title">"The way to deal with diabetes is to keep yourself motivated."</h4>
+            <a href="login" class="detect">Detect Diabetes</a>
+        </div>
+        <img src="../static/image/img1.png" alt="">
+    </div>
+    <div class="details">
+        <h1>Diabetes</h1>
+        <div class="contain">
+            <ul class="key flex box">
+                <h2 class="head">Key Facts</h2>
+                <ul class="body">
+                    <li>
+                        The number of people with diabetes rose from 108 million in 1980 to 422 million in 2014. Prevalence has been rising more rapidly in low- and middle-income countries than in high-income countries.
+                    </li>
+                    <li>
+                        Diabetes is a major cause of blindness, kidney failure, heart attacks, stroke and lower limb amputation.
+                    </li>
+                    <li>
+                        Between 2000 and 2019, there was a 3% increase in diabetes mortality rates by age.
+                    </li>
+                    <li>
+                        In 2019, diabetes and kidney disease due to diabetes caused an estimated 2 million deaths.
+                    </li>
+                    <li>
+                        A healthy diet, regular physical activity, maintaining a normal body weight and avoiding tobacco use are ways to prevent or delay the onset of type 2 diabetes.
+                    </li>
+                    <li>
+                        Diabetes can be treated and its consequences avoided or delayed with diet, physical activity, medication and regular screening and treatment for complications.
+                    </li>
+                </ul>
+                
+            </ul>
+            <div class="overview flex box">
+                <h2 class="head">Overview</h2>
+                <span class="body">
+                    <p>Diabetes is a chronic disease that occurs either when the pancreas does not produce enough insulin or when the body cannot effectively use the insulin it produces. Insulin is a hormone that regulates blood glucose. Hyperglycaemia, also called raised blood glucose or raised blood sugar, is a common effect of uncontrolled diabetes and over time leads to serious damage to many of the body's systems, especially the nerves and blood vessels.</p>
+                    <p>In 2014, 8.5% of adults aged 18 years and older had diabetes. In 2019, diabetes was the direct cause of 1.5 million deaths and 48% of all deaths due to diabetes occurred before the age of 70 years. Another 460 000 kidney disease deaths were caused by diabetes, and raised blood glucose causes around 20% of cardiovascular deaths (1).</p>
+                    <p>Between 2000 and 2019, there was a 3% increase in age-standardized mortality rates from diabetes. In lower-middle-income countries, the mortality rate due to diabetes increased 13%.</p>
+                    <p>By contrast, the probability of dying from any one of the four main noncommunicable diseases (cardiovascular diseases, cancer, chronic respiratory diseases or diabetes) between the ages of 30 and 70 decreased by 22% globally between 2000 and 2019. </p>
+                </span>
+            </div>
+        </div>
+
+        <div class="contain box1">
+            <ul class="key flex box">
+                <h2 class="head">Symptoms</h2>
+                <div class="body">
+                    <p> Symptoms of diabetes may occur suddenly. In type 2 diabetes, the symptoms can be mild and may take many years to be noticed.
+                        Symptoms of diabetes include:</p>
+                    <li>
+                        feeling very thirsty                </li>
+                    <li>
+                        needing to urinate more often than usual                </li>
+                    <li>
+                        blurred vision                </li>
+                    <li>
+                        feeling tired                </li>
+                    <li>
+                        losing weight unintentionally                </li>
+                   <p>
+                    Over time, diabetes can damage blood vessels in the heart, eyes, kidneys and nerves.
+                    People with diabetes have a higher risk of health problems including heart attack, stroke and kidney failure.
+                    Diabetes can cause permanent vision loss by damaging blood vessels in the eyes.
+                    Many people with diabetes develop problems with their feet from nerve damage and poor blood flow. This can cause foot ulcers and may lead to amputation.
+                   </p>
+                </div>
+                
+            </ul>
+            <div class="overview flex box">
+                <h2 class="head">Prevention</h2>
+                <div class="body">
+                    <p> Lifestyle changes are the best way to prevent or delay the onset of type 2 diabetes.
+                        To help prevent type 2 diabetes and its complications, people should:</p>
+                    <li>
+                        reach and keep a health body weight             </li>
+                    <li>
+                        stay physically active with at least 30 minutes of moderate exercise each day              </li>
+                    <li>
+                        eat a healthy diet and avoid sugar and saturated fat              </li>
+                    <li>
+                        not smoke tobacco.                </li>
+                </div>   
+            </div>
+        </div> 
+        </div>
+    </div>
+    <a href="https://www.who.int/news-room/fact-sheets/detail/diabetes#:~:text=Overview,hormone%20that%20regulates%20blood%20glucose." class="one btn" 
+    style="margin: 5px 0 5px 80vw;"
+    target="_blank">
+        Learn More
+    </a>
+    
+    <div class="footer">
+        ©2024 Diabetes Detection - Machine Learning | All Rights Reserved
+    </div>
+</body>
+
+</html>

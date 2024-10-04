@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <style>
+        .error-list {
+            color: red;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .password {
+            position: relative;
+        }
+
+        .eye-icon {
+            position: absolute;
+            right: 10px;
+            margin-top:5px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a class="logo" href="/">
+            Diabetes Detection
+        </a>
+    </nav>
+    <div class="container">
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <div class="username">
+                <label for="username">User Name</label>
+                <input type="text" name="username" id="username" class="inp" required>
+            </div>
+
+            <div class="password">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" class="inp" required>
+                <!-- Eye icon for password visibility toggle -->
+                <span class="eye-icon" onclick="togglePassword()">👁️</span>
+            </div>
+
+            <!-- Display error/success messages -->
+            {% if messages %}
+            <ul class="error-list" id="error-messages">
+                {% for message in messages %}
+                <li class="{% if message.tags %}{{ message.tags }}{% endif %}">
+                    {{ message }}
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            <input type="submit" id="log1" value="Log In" class="login">
+            <p>Don't have an account? <a href="{% url 'register' %}">Sign Up</a></p>
+        </form>
+    </div>
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const eyeIcon = document.querySelector('.eye-icon');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.textContent = '🙈';  // Change the icon to "hide" mode
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.textContent = '👁️';  // Change the icon back to "show" mode
+            }
+        }
+
+        setTimeout(function () {
+            let errorMessages = document.getElementById('error-messages');
+            if (errorMessages) {
+                errorMessages.style.display = 'none';
+            }
+        }, 3000);  // Hide messages after 3 seconds
+    </script>
+</body>
+
+</html>

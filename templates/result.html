@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+     <link rel="stylesheet" href="{% static 'css/result.css' %}"> 
+   <style>
+
+    table{
+        padding:5px;
+        margin-top: 20px;
+        box-shadow: 2px 2px 5px #8c8c8c, 0px 0px 10px #ffffff;
+        border:none;
+      }
+      th, td {
+        padding: 12px 16px; 
+        text-align: center;
+        white-space: nowrap; 
+        overflow: hidden;
+        text-overflow: ellipsis;
+        border-bottom: none; 
+    }
+    
+    th {
+        background-color: #f9f9f9;
+        border-radius: 5px ;
+        font-size: 14px;
+        color: #737070; 
+    }
+    
+    td {
+        font-size: 13px; 
+        color: #737070;
+    }
+   </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="logo" href="/">Diabetes Detection</div>
+        <div class="nav-links">
+            <a href="../../detail">Detail</a>
+            <a href="../../login">Log Out</a>
+        </div>
+    </nav>
+    <div class="container">
+        <h2>Diabetes Detection Result</h2>
+        <p>Diagnosis: {{ result2 }}</p>
+        
+
+        
+        <h3>Model Performance</h3>
+        <table>
+            <tr>
+                <th>Model</th>
+                <th>Precision</th>
+                <th>Recall</th>
+                <th>Accuracy</th>
+            </tr>
+            <tr>
+                <td>Logistic Regression</td>
+                <td>{{ log_reg_precision }}</td>
+                <td>{{ log_reg_recall }}</td>
+                <td>{{ log_reg_accuracy }}</td>
+            </tr>
+            <tr>
+                <td>Decision Tree</td>
+                <td>{{ dt_precision }}</td>
+                <td>{{ dt_recall }}</td>
+                <td>{{ dt_accuracy }}</td>
+            </tr>
+            <tr>
+                <td>Random Forest</td>
+                <td>{{ rf_precision }}</td>
+                <td>{{ rf_recall }}</td>
+                <td>{{ rf_accuracy }}</td>
+            </tr>
+            
+        </table>
+
+        {% load static %}
+        <div class="img">
+            
+        </div>
+        <h3>Confusion Matrices</h3>
+        <div>
+            <h4>Logistic Regression</h4>
+            <img src="{% static 'confusion_matrices/Logistic Regression_confusion_matrix.png' %}" alt="Logistic Regression Confusion Matrix">
+        </div>
+        <div>
+            <h4>Decision Tree</h4>
+            <img src="{% static 'confusion_matrices/Decision Tree_confusion_matrix.png' %}" alt="Decision Tree Confusion Matrix">
+        </div>
+        <div>
+            <h4>Random Forest</h4>
+            <img src="{% static 'confusion_matrices/Random Forest_confusion_matrix.png' %}" alt="Random Forest Confusion Matrix">
+        </div>
+    </div>
+    
+</body>
+</html>

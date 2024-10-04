@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+    <style>
+        .header{
+            font-size: 24px;
+            font-weight: 700;
+        }
+        .head{
+            color: #737070;
+        }
+        .btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 8px; 
+            font-weight:bold;
+        }
+        .btn:hover{
+            text-decoration:none !important;
+            background:black;
+            color: white;
+        }
+        table{
+            padding:5px;
+            margin-top: 20px;
+            box-shadow: 2px 2px 5px #8c8c8c, 0px 0px 10px #ffffff;
+            border:none;
+          }
+          th, td {
+            padding: 12px 16px; 
+            text-align: center;
+            white-space: nowrap; 
+            overflow: hidden;
+            text-overflow: ellipsis;
+            border-bottom: none; 
+        }
+        
+        th {
+            background-color: #f9f9f9;
+            border-radius: 5px ;
+            font-size: 14px;
+            color: #737070; 
+        }
+        
+        td {
+            font-size: 13px; 
+            color: #737070;
+        }
+        </style>
+</head>
+<body>
+    <nav>
+        <div class="logo" style="cursor:'default">Diabetes Detection</div>
+        <div class="nav-links">
+            <a href="{% url 'predict' %}">Predict</a>
+            <a href="login">Log Out</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2 class="header">Welcome, {{ user.username }}</h2>
+
+        <div class="one">
+            <h3 class="head">Your Predictions:</h3>
+            <a href="{% url 'predict' %}" class="btn">Make a New Prediction</a>
+        </div>
+
+        <table>
+            <tr>
+                <th>Prediction ID</th>
+                <th>Pregnancies</th>
+                <th>Glucose</th>
+                <th>Blood Pressure</th>
+                <th>Skin Thickness</th>
+                <th>Insulin</th>
+                <th>BMI</th>
+                <th>DPF</th>
+                <th>Age</th>
+                <th>Result</th>
+                <th>Details</th>
+            </tr>
+            {% for entry in combined_data %}
+            <tr>
+                <td>{{ entry.prediction.id }}</td>
+                <td>{{ entry.prediction.pregnancies }}</td>
+                <td>{{ entry.prediction.glucose }}</td>
+                <td>{{ entry.prediction.blood_pressure }}</td>
+                <td>{{ entry.prediction.skin_thickness }}</td>
+                <td>{{ entry.prediction.insulin }}</td>
+                <td>{{ entry.prediction.bmi }}</td>
+                <td>{{ entry.prediction.dpf }}</td>
+                <td>{{ entry.prediction.age }}</td>
+
+                <!-- If a result exists, show it; otherwise, show 'Pending' -->
+                <td>
+                    {% if entry.result %}
+                        {{ entry.result.result }}
+                    {% else %}
+                        Pending
+                    {% endif %}
+                </td>
+
+                <td><a href="{% url 'result' prediction_id=entry.prediction.id %}">View Result</a></td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="11">No predictions found</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+</body>
+</html>

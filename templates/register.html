@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+    <style>
+        .error-list {
+            color: red;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .password,
+        .password2 {
+            position: relative;
+        }
+
+        .eye-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            margin-top: 5px;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a class="logo" href="/">
+            Diabetes Detection
+        </a>
+    </nav>
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="username">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" class="inp" required>
+            </div>
+
+            <div class="email">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" class="inp" required>
+            </div>
+
+            <div class="password">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" class="inp" required>
+                <!-- Eye icon for password visibility toggle -->
+                <span class="eye-icon" onclick="togglePassword('password', this)">👁️</span>
+            </div>
+
+            <div class="password2">
+                <label for="password2">Confirm Password</label>
+                <input type="password" name="password2" id="password2" class="inp" required>
+                <!-- Eye icon for confirm password visibility toggle -->
+                <span class="eye-icon" onclick="togglePassword('password2', this)">👁️</span>
+            </div>
+
+            <!-- Display errors if any -->
+            {% if messages %}
+            <ul class="error-list" id="error-messages">
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            <input type="submit" value="Register" class="login">
+            <p>Have an account? <a href="login">Log In</a></p>
+        </form>
+    </div>
+
+    <script>
+        // Function to toggle password visibility
+        function togglePassword(fieldId, eyeIcon) {
+            const passwordInput = document.getElementById(fieldId);
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.textContent = '🙈';  // Change the icon to "hide" mode
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.textContent = '👁️';  // Change the icon back to "show" mode
+            }
+        }
+
+        // Wait for the document to be fully loaded
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get the error message container
+            const errorMessages = document.getElementById('error-messages');
+            
+            // If there are error messages, set a timeout to hide them
+            if (errorMessages) {
+                setTimeout(function () {
+                    errorMessages.style.display = 'none'; // Hide the messages after 5 seconds
+                }, 5000); // 5000 milliseconds = 5 seconds
+            }
+        });
+    </script>
+</body>
+
+</html>
