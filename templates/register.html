@@ -40,25 +40,26 @@
         <form method="post">
             {% csrf_token %}
 
-            <div class="username">
+            
                 <label for="username">Username</label>
                 <input type="text" name="username" id="username" class="inp" required>
-            </div>
+            
 
-            <div class="email">
+    
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" class="inp" required>
-            </div>
-
-            <div class="password">
+            
                 <label for="password">Password</label>
+            <div class="password">
+                
                 <input type="password" name="password" id="password" class="inp" required>
                 <!-- Eye icon for password visibility toggle -->
                 <span class="eye-icon" onclick="togglePassword('password', this)">👁️</span>
             </div>
-
+            
+            <label for="password2">Confirm Password</label>
             <div class="password2">
-                <label for="password2">Confirm Password</label>
+             
                 <input type="password" name="password2" id="password2" class="inp" required>
                 <!-- Eye icon for confirm password visibility toggle -->
                 <span class="eye-icon" onclick="togglePassword('password2', this)">👁️</span>

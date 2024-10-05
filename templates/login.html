@@ -38,13 +38,13 @@
     <div class="container">
         <form method="post" action="{% url 'login' %}">
             {% csrf_token %}
-            <div class="username">
+            
                 <label for="username">User Name</label>
                 <input type="text" name="username" id="username" class="inp" required>
-            </div>
-
-            <div class="password">
+          
                 <label for="password">Password</label>
+            <div class="password">
+                
                 <input type="password" name="password" id="password" class="inp" required>
                 <!-- Eye icon for password visibility toggle -->
                 <span class="eye-icon" onclick="togglePassword()">👁️</span>
